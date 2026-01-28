@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valentine 💘</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background: pink;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      margin: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+
+    #noBtn {
+      background-color: #555;
+      color: white;
+    }
+
+    .emoji {
+      position: fixed;
+      font-size: 2rem;
+      animation: fall 2s linear forwards;
+    }
+
+    @keyframes fall {
+      from {
+        top: -50px;
+        opacity: 1;
+      }
+      to {
+        top: 100vh;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Vill du bli min Valentine? 💘</h1>
+
+  <button id="yesBtn">Ja 💖</button>
+  <button id="noBtn">Nej 💔</button>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    let scale = 1;
+
+    noBtn.addEventListener("click", () => {
+      scale += 0.4;
+      yesBtn.style.transform = `scale(${scale})`;
+      noBtn.style.display = "none";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      for (let i = 0; i < 30; i++) {
+        createEmoji();
+      }
+    });
+
+    function createEmoji() {
+      const emojis = ["🎉", "💘", "🥳", "💖", "😍"];
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
